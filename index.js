@@ -86,13 +86,21 @@ Car.prototype.fill = function(gallons){
 
 Car.prototype.drive = function(distance){
   this.odometer += distance;
-  this.tank -= distance/this.milesPerGallon
+  this.tank -= distance/this.milesPerGallon;
+  const driveDistance = this.milesPerGallon*this.tank
+  if(driveDistance<distance){
+    return `I ran out of fuel at ${this.odometer} miles!`
+  }
 }
 
-// const carOne = new Car('Ferrari', 10)
-// carOne.fill(45)
-// carOne.drive(15)
+const carOne = new Car('Ferrari', 1)
+carOne.fill(50)
 // console.log(carOne.tank)
+carOne.drive(40)
+// console.log(carOne.tank)
+// console.log(carOne.drive(50))
+
+
 
 
 /*
@@ -118,7 +126,7 @@ Baby.prototype.play = function(){
   In your own words explain the four principles for the "this" keyword below:
   1. Window Binding : this is not a useful principle but it is what happens when 'this' has no context, it will give the entirety of JS's global objects 
   2. Implicit Binding : (most common usage) , 'this' refers to whatever object is to the left of dot notation and to the right is whichever key/method you are trying to access
-  3. Explicit Binding : triggered with .call(), .apply() and .bind(); .call() is used to apply a function (left of dot) to a desired object (in the parentheses). 
+  3. Explicit Binding : triggered with .call(), .apply() and .bind(); .call() is used to invoke a function (left of dot) to a desired object (in the parentheses). 
   .bind() is very similar except you need to make a new function declaration to contain the result of your explicit binding. 
   4. New Binding : makes new objects with the 'new' keyword before a pre-existing constructor function that provides a framework for future objects with 'this' declarations. 
 */
